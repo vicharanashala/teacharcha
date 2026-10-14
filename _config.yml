@@ -1,0 +1,17 @@
+title: Teacharcha
+description: A space for teachers to share thoughts, ideas and resources. Maintained by Vicharanashala, the Lab for Education Design at IIT Ropar.
+theme: minima
+
+# Served by GitHub Pages at https://vicharanashala.github.io/teacharcha/
+# If Teacharcha later gets its own domain, change url to it and set baseurl to "".
+url: "https://vicharanashala.github.io"
+baseurl: "/teacharcha"
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
