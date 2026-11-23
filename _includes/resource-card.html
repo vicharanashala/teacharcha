@@ -1,0 +1,13 @@
+<!-- One situation card. The details come from the file in the _resources folder. -->
+<a class="ta-resource ta-teaser" href="{{ include.resource.url | relative_url }}" data-categories="{{ include.resource.categories | join: '|' | escape }}">
+  {% if include.resource.scene and include.resource.scene != "" %}
+    <img src="{{ '/assets/images/resources/' | append: include.resource.scene | relative_url }}" alt="" loading="lazy">
+  {% endif %}
+  <span class="ta-teaser-body">
+    <span class="ta-kicker">What would you do?</span>
+    <span class="ta-teaser-title">{{ include.resource.title | escape }}</span>
+    <span class="ta-teaser-text">{{ include.resource.teaser | escape }}</span>
+    <span class="ta-teaser-tags">{{ include.resource.categories | join: ' · ' | escape }}</span>
+    <span class="ta-teaser-go">Step into this situation <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+  </span>
+</a>

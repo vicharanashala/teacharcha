@@ -1,0 +1,13 @@
+<!-- One project card. The details come from _data/projects.yml. -->
+<article class="ta-project">
+  {% if include.project.image and include.project.image != "" %}
+    <img src="{{ '/assets/images/projects/' | append: include.project.image | relative_url }}" alt="Preview of {{ include.project.title | escape }}" loading="lazy">
+  {% endif %}
+  <div class="ta-project-body">
+    <p class="ta-project-tags">{{ include.project.type | escape }}{% if include.project.subject and include.project.subject != "" %} · {{ include.project.subject | escape }}{% endif %}{% if include.project.level and include.project.level != "" %} · {{ include.project.level | escape }}{% endif %}</p>
+    <h3>{{ include.project.title | escape }}</h3>
+    <p>{{ include.project.summary | escape }}</p>
+    <p class="ta-project-credit">{% if include.project.teacher and include.project.teacher != "" %}{{ include.project.teacher | escape }}{% if include.project.institution and include.project.institution != "" %}, {{ include.project.institution | escape }}{% endif %}{% else %}Shared by a teacher{% endif %}</p>
+    <a class="ta-project-link" href="{{ include.project.link | escape }}" target="_blank" rel="noopener noreferrer">Open the resource<span class="ta-visually-hidden">: {{ include.project.title | escape }} (opens in a new tab)</span></a>
+  </div>
+</article>

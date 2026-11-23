@@ -1,0 +1,19 @@
+---
+layout: page
+title: Teachers' projects
+permalink: /projects/
+description: Teaching and learning resources made by teachers and shared on Teacharcha.
+---
+
+<p>Resources made by teachers for their own classes. Each one is read by the lab team and shared with its teacher's permission.</p>
+
+{% assign shown = site.data.projects | where: "permission_given", true %}
+{% if shown and shown.size > 0 %}
+  <div class="ta-project-grid">
+    {% for project in shown %}
+      {% include project-card.html project=project %}
+    {% endfor %}
+  </div>
+{% else %}
+  {% include projects-empty.html %}
+{% endif %}

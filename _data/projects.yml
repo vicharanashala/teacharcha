@@ -1,0 +1,27 @@
+# TEACHARCHA PROJECTS: this is the only file to edit when adding a project.
+#
+# HOW TO ADD ONE
+# 1. Copy the sample below, from "- title" to "permission_given".
+# 2. Paste it at the bottom of this file.
+# 3. Remove the # and the one space after it at the start of each pasted line.
+# 4. Fill in the details. Keep the quotation marks.
+#
+# RULES
+# - A project appears ONLY when permission_given is true. Set it to true only after
+#   the teacher has agreed to public display.
+# - teacher: leave as "" if the teacher chose to stay anonymous. Same for institution.
+# - Projects appear on the site in the same order as in this file.
+# - image is optional. Put the picture in assets/images/projects/ and write its file name.
+#
+# SAMPLE (this one does not appear on the site)
+#
+# - title: "Name of the resource"
+#   teacher: "Teacher's name"
+#   institution: "Institution"
+#   subject: "Subject"
+#   level: "Class or level"
+#   type: "Lesson plan"
+#   summary: "Two or three lines on what it is and what students learn from it."
+#   link: "https://the-open-link-to-the-resource"
+#   image: ""
+#   permission_given: false

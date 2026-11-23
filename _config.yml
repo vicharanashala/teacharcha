@@ -7,6 +7,15 @@ theme: minima
 url: "https://vicharanashala.github.io"
 baseurl: "/teacharcha"
 
+# Visit counter: put the GoatCounter account code between the quotes to switch it on.
+goatcounter: ""
+
+# Each reading is one file in the _resources folder.
+collections:
+  resources:
+    output: true
+    permalink: /resources/:name/
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag

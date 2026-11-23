@@ -1,0 +1,109 @@
+---
+layout: default
+---
+<article class="ta-story">
+  <a class="ta-back" href="{{ '/resources/' | relative_url }}"><i class="ph ph-arrow-left" aria-hidden="true"></i> All situations</a>
+
+  <header class="ta-case">
+    <div class="ta-case-text">
+      <p class="ta-kicker">{{ page.opening_day | escape }}</p>
+      <h1>{{ page.title | escape }}</h1>
+      {% for paragraph in page.case %}<p>{{ paragraph | escape }}</p>{% endfor %}
+    </div>
+    {% if page.scene and page.scene != "" %}
+      <img src="{{ '/assets/images/resources/' | append: page.scene | relative_url }}" alt="{{ page.scene_description | escape }}">
+    {% endif %}
+  </header>
+
+  <section class="ta-choose">
+    <h2>{{ page.ask | default: "What would you do?" | escape }}</h2>
+    <p>Pick one before you read on.</p>
+    <div class="ta-choices">
+      {% for choice in page.choices %}
+        <details name="what-would-you-do">
+          <summary><span class="ta-choice-letter" aria-hidden="true">{{ forloop.index }}</span><span class="ta-choice-text">{{ choice.label | escape }}{% if choice.cost %}<small>{{ choice.cost | escape }}</small>{% endif %}</span></summary>
+          <p>{{ choice.response | escape }}</p>
+        </details>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="ta-bridge">
+    <p class="ta-kicker">Now follow the week</p>
+    <p>{{ page.bridge | escape }}</p>
+  </section>
+
+  <div class="ta-timeline">
+    {% for chapter in page.chapters %}
+      <section class="ta-chapter">
+        <p class="ta-day">{{ chapter.day | escape }}</p>
+        <h2>{{ chapter.title | escape }}</h2>
+        {% for paragraph in chapter.story %}<p>{{ paragraph | escape }}</p>{% endfor %}
+
+        {% if chapter.messages %}
+          {% assign contact = site.data.cast | where: "key", chapter.chat_with | first %}
+          <div class="ta-phone" role="group" aria-label="Chat between Asha and {{ contact.name | escape }}">
+            <div class="ta-phone-head">
+              <span class="ta-avatar ta-avatar-{{ contact.key | escape }}" aria-hidden="true">{{ contact.initial | escape }}</span>
+              <strong>{{ contact.name | escape }}</strong>
+            </div>
+            <div class="ta-chat">
+              {% for message in chapter.messages %}
+                {% assign person = site.data.cast | where: "key", message.who | first %}
+                <div class="ta-msg{% if message.who == 'asha' %} ta-msg-me{% endif %}">
+                  <span class="ta-visually-hidden">{{ person.short | escape }}: </span>
+                  <span class="ta-msg-text">{{ message.text | escape }}</span>
+                  <span class="ta-msg-time">{{ message.time | escape }}{% if message.who == 'asha' %} <span aria-hidden="true">✓✓</span>{% endif %}</span>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        {% if chapter.answer %}
+          <details class="ta-pause">
+            <summary><span class="ta-pause-label">Pause and think</span>{{ chapter.question | escape }}<span class="ta-pause-open">See one way to think about it</span></summary>
+            <p>{{ chapter.answer | escape }}</p>
+          </details>
+        {% elsif chapter.question %}
+          <div class="ta-pause ta-pause-final"><span class="ta-pause-label">Pause and think</span><p>{{ chapter.question | escape }}</p></div>
+        {% endif %}
+      </section>
+    {% endfor %}
+  </div>
+
+  <section class="ta-reading">
+    <p class="ta-kicker">The reading behind Asha's week</p>
+    <h2>{{ page.reading_title | escape }}</h2>
+    <p class="ta-resource-source">{{ page.source | escape }}</p>
+    {% if page.reading_intro %}<p>{{ page.reading_intro | escape }}</p>{% endif %}
+    {% if page.in_one_line %}<p class="ta-one-line">{{ page.in_one_line | escape }}</p>{% endif %}
+    {% if page.ideas %}
+      <div class="ta-ideas">
+        {% for idea in page.ideas %}
+          <div class="ta-idea">
+            <span class="ta-pause-label">{{ idea.day | escape }}</span>
+            <h3>{{ idea.heading | escape }}</h3>
+            <p>{{ idea.text | escape }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% if page.graphic and page.graphic != "" %}
+      <img class="ta-graphic" src="{{ '/assets/images/resources/' | append: page.graphic | relative_url }}" alt="{{ page.graphic_description | escape }}" loading="lazy">
+    {% endif %}
+  </section>
+
+  <section class="ta-try">
+    <i class="ph ph-hand-pointing" aria-hidden="true"></i>
+    <div>
+      <h2>Try this before next week</h2>
+      <p>{{ page.try_this | escape }}</p>
+      <a class="ta-button" href="{{ page.link | escape }}" target="_blank" rel="noopener noreferrer">Read the original<span class="ta-visually-hidden">: {{ page.reading_title | escape }} (opens in a new tab)</span></a>
+    </div>
+  </section>
+
+  {% include come-back.html %}
+
+  <p class="ta-rights-note">The story and its people are invented. All rights in the reading stay with its author and publisher. For changes or removal, please <a href="https://vicharanashala.ai/contact/">contact the lab</a>.</p>
+</article>

@@ -1,0 +1,6 @@
+# The categories shown as buttons on the Resources page.
+# To add one, add a new line in the same style.
+- "Teaching and learning"
+- "Well-being"
+- "Assessments"
+- "Technology"

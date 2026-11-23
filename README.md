@@ -35,7 +35,12 @@ as the lab website, and GitHub publishes it automatically.
 
 | To change... | Edit this file |
 |---|---|
+| The projects shown | `_data/projects.yml` (steps are at the top of that file) |
+| The readings shown | one file per reading in `_resources/` (copy `_copy-me.md`; steps are inside) |
+| The visit counter | `goatcounter` in `_config.yml` |
+| The Resources category buttons | `_data/resource_categories.yml` |
 | The home page | `index.md` |
+| The About page | `about.md` |
 | The menu at the top | `_includes/header.html` |
 | The site title and description | `_config.yml` |
 | Colours, fonts and spacing | `_sass/minima.scss` (copied from the lab website) |

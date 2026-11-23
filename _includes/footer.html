@@ -1,0 +1,24 @@
+<footer class="ta-footer">
+  <div class="wrapper">
+    <p>Teacharcha is maintained by <a href="https://vicharanashala.ai">Vicharanashala</a>, the Lab for Education Design at IIT Ropar.</p>
+    <p><a href="https://vicharanashala.ai/contact/">Contact the lab</a></p>
+  </div>
+</footer>
+
+<!-- Visit counter. To switch it on, put the GoatCounter code in _config.yml (goatcounter). -->
+{% if site.goatcounter and site.goatcounter != "" %}
+  <p class="ta-visits" id="ta-visits" hidden><i class="ph ph-eye" aria-hidden="true"></i> <strong id="ta-visits-count"></strong> page visits so far</p>
+  <script data-goatcounter="https://{{ site.goatcounter }}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  <script>
+    fetch('https://{{ site.goatcounter }}.goatcounter.com/counter/TOTAL.json')
+      .then(function (response) { return response.ok ? response.json() : null; })
+      .then(function (data) {
+        if (!data || !data.count) { return; }
+        document.getElementById('ta-visits-count').textContent = data.count;
+        document.getElementById('ta-visits').hidden = false;
+      })
+      .catch(function () {});
+  </script>
+{% else %}
+  <p class="ta-visits"><i class="ph ph-eye" aria-hidden="true"></i> Visit count starts at launch</p>
+{% endif %}

@@ -3,3 +3,5 @@ _site/
 .jekyll-cache/
 vendor/
 Gemfile.lock
+# Drawings on hold, kept on this computer only.
+_parked/

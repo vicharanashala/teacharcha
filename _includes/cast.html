@@ -1,0 +1,12 @@
+<section class="ta-cast" aria-labelledby="ta-cast-heading">
+  <h2 id="ta-cast-heading">Meet the staffroom</h2>
+  <p>Four teachers at one government college. Their stories are invented, and you may recognise every one of them.</p>
+  <div class="ta-cast-grid">
+    {% for person in site.data.cast %}
+      <div class="ta-person">
+        <span class="ta-avatar ta-avatar-{{ person.key | escape }}" aria-hidden="true">{{ person.initial | escape }}</span>
+        <span><strong>{{ person.name | escape }}</strong><br>{{ person.about | escape }}</span>
+      </div>
+    {% endfor %}
+  </div>
+</section>

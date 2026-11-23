@@ -1,0 +1,56 @@
+---
+layout: default
+title: Resources
+permalink: /resources/
+description: Classroom situations that ask what you would do, with the readings that can help you decide.
+---
+
+<section class="ta-page-hero">
+  <p class="ta-kicker">Resources</p>
+  <h1>What would you do?</h1>
+  <p>Step into a real-feeling classroom moment, make your call, then see what a good reading adds to it.</p>
+</section>
+
+{% include cast.html %}
+
+{% assign shown = site.resources %}
+{% if shown and shown.size > 0 %}
+  {% assign newest = shown | sort: "added" | reverse %}
+  <div class="ta-filter" role="group" aria-label="Filter situations by category">
+    <button type="button" data-filter="" aria-pressed="true">All</button>
+    {% for category in site.data.resource_categories %}
+      <button type="button" data-filter="{{ category | escape }}" aria-pressed="false">{{ category | escape }}</button>
+    {% endfor %}
+  </div>
+  <div class="ta-resource-list">
+    {% for resource in newest %}
+      {% include resource-card.html resource=resource %}
+    {% endfor %}
+  </div>
+  <div class="ta-empty" id="ta-filter-empty" hidden>
+    <i class="ph ph-books" aria-hidden="true"></i>
+    <p role="status">Situations in this category are on their way.</p>
+  </div>
+  <script>
+    (function () {
+      var buttons = document.querySelectorAll('.ta-filter button');
+      var cards = document.querySelectorAll('.ta-resource');
+      var empty = document.getElementById('ta-filter-empty');
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          var wanted = button.getAttribute('data-filter');
+          var visible = 0;
+          buttons.forEach(function (b) { b.setAttribute('aria-pressed', b === button ? 'true' : 'false'); });
+          cards.forEach(function (card) {
+            var match = !wanted || card.getAttribute('data-categories').split('|').indexOf(wanted) !== -1;
+            card.hidden = !match;
+            if (match) { visible += 1; }
+          });
+          empty.hidden = visible !== 0;
+        });
+      });
+    })();
+  </script>
+{% endif %}
+
+{% include come-back.html %}
