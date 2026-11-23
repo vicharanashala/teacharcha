@@ -1,0 +1,64 @@
+---
+layout: default
+title: Community
+permalink: /community/
+description: Find teachers in your discipline and help start a Teacharcha network.
+---
+
+{% if site.community_form and site.community_form != "" %}
+  {% assign join_link = site.community_form %}
+  {% assign join_label = "Join the community" %}
+{% else %}
+  {% assign join_link = "https://vicharanashala.ai/contact/" %}
+  {% assign join_label = "Write to the lab" %}
+{% endif %}
+
+<section class="ta-page-hero ta-hero-split">
+  <div>
+    <p class="ta-kicker">Community</p>
+    <h1>Who do you turn to when a class goes wrong?</h1>
+    <p>Often the person who can help teaches your subject in another college. Teacharcha is here to help you find them.</p>
+    <div class="ta-actions">
+      <a class="ta-button ta-button-warm" href="{{ join_link }}">{{ join_label }}</a>
+      <a class="ta-button ta-button-light" href="#networks">See the networks</a>
+    </div>
+  </div>
+  {% include network-graphic.html %}
+</section>
+
+<section class="ta-steps" aria-label="How a network works">
+  <div><i class="ph ph-map-pin" aria-hidden="true"></i><strong>Find your discipline</strong><span>Teachers who face what you face</span></div>
+  <div><i class="ph ph-chats-teardrop" aria-hidden="true"></i><strong>Share a real moment</strong><span>What worked and what failed</span></div>
+  <div><i class="ph ph-lightbulb" aria-hidden="true"></i><strong>Try something new</strong><span>Take one idea back to class</span></div>
+</section>
+
+<section class="ta-section" id="networks">
+  <h2>Discipline networks</h2>
+  <div class="ta-network-grid">
+    {% for network in site.data.networks %}
+      {% if network.link and network.link != "" %}
+        <a class="ta-network ta-network-open" href="{{ network.link }}">
+          <i class="ph {{ network.icon | escape }}" aria-hidden="true"></i>
+          <span><strong>{{ network.name | escape }}</strong><small>{{ network.about | escape }}</small><em>Join this network</em></span>
+        </a>
+      {% else %}
+        <div class="ta-network">
+          <i class="ph {{ network.icon | escape }}" aria-hidden="true"></i>
+          <span><strong>{{ network.name | escape }}</strong><small>{{ network.about | escape }}</small><em>Starting soon</em></span>
+        </div>
+      {% endif %}
+    {% endfor %}
+    <a class="ta-network ta-network-open ta-network-add" href="{{ join_link }}">
+      <i class="ph ph-plus" aria-hidden="true"></i>
+      <span><strong>Don't see yours?</strong><small>Tell us what you teach</small><em>Suggest a network</em></span>
+    </a>
+  </div>
+</section>
+
+<aside class="ta-join">
+  <div>
+    <h2>Help start the first networks</h2>
+    <p>Tell us what you teach, and we will bring you together with others who teach it too.</p>
+  </div>
+  <a class="ta-button ta-button-warm" href="{{ join_link }}">{{ join_label }}</a>
+</aside>

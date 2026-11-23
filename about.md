@@ -7,6 +7,10 @@ description: What Teacharcha is, what it holds and who looks after it.
 
 Teachers learn a great deal from one another, yet much of that learning stays inside one staffroom or one programme. Teacharcha gives it a place to live and be found.
 
+## Our goal
+
+No teacher should have to figure it out alone. Teacharcha helps teachers think through real situations, learn from good readings, share their work and [find others in their discipline]({{ '/community/' | relative_url }}).
+
 ## What it holds
 
 The site will grow in stages. It begins with projects that teachers make in the lab's programmes, credited as each teacher chooses, and short notes on readings in AI in education, teaching and learning. Each note links to the original work, and all rights stay with its authors and publishers. A podcast and more lab videos will follow.

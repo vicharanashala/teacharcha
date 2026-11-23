@@ -10,6 +10,10 @@ baseurl: "/teacharcha"
 # Visit counter: put the GoatCounter account code between the quotes to switch it on.
 goatcounter: ""
 
+# Community join form: paste the form or group link between the quotes.
+# While it is empty, the Community page sends people to the lab's contact page.
+community_form: ""
+
 # Each reading is one file in the _resources folder.
 collections:
   resources:
