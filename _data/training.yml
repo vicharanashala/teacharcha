@@ -1,0 +1,7 @@
+# Training programmes and FDPs shown on the Resources page.
+# To add one, copy a block below and change its details. "topics" is optional.
+- name: "CBPAI"
+  icon: "ph-sparkle"
+  about: "The Capacity Building Programme in AI, from Vicharanashala. A five-day faculty development cohort on using AI thoughtfully in your teaching."
+  link: "https://vicharanashala.ai/events/"
+  button: "See the cohorts"

@@ -1,0 +1,20 @@
+<!-- Programme cards. The details come from _data/training.yml. -->
+<div class="ta-training-list">
+  {% for programme in site.data.training %}
+    <article class="ta-training">
+      <i class="ph {{ programme.icon | escape }}" aria-hidden="true"></i>
+      <div>
+        <h3>{{ programme.name | escape }}</h3>
+        <p>{{ programme.about | escape }}</p>
+        {% if programme.topics %}
+          <ul class="ta-pillars">
+            {% for topic in programme.topics %}
+              <li><a href="{{ topic.link }}" target="_blank" rel="noopener noreferrer">{{ topic.label | escape }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        <a class="ta-button" href="{{ programme.link }}" target="_blank" rel="noopener noreferrer">{{ programme.button | escape }} <span class="ta-visually-hidden">(opens in a new tab)</span></a>
+      </div>
+    </article>
+  {% endfor %}
+</div>

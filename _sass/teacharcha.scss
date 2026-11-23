@@ -734,3 +734,111 @@ a.ta-network-open em { color: $ta-teal; }
   .ta-steps div::after { display: none; }
   .ta-join { flex-direction: column; align-items: flex-start; }
 }
+
+// Resources page: two main paths and programme cards.
+html { scroll-behavior: smooth; }
+#training, #readings { scroll-margin-top: 1rem; }
+
+.ta-paths {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+a.ta-path,
+a.ta-path:visited {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.2rem;
+  border: 2px solid #cfe0e0;
+  border-radius: 12px;
+  background: #e8f3f3;
+  color: #1a1a1a;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  > i:first-child {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 3.1rem;
+    height: 3.1rem;
+    border-radius: 12px;
+    background: $ta-teal;
+    color: #fff;
+    font-size: 1.7rem;
+  }
+
+  span { flex: 1; }
+  strong, small { display: block; }
+  strong { font-size: 1.08rem; line-height: 1.3; }
+  small { margin-top: 0.2rem; color: #4f4f4f; font-size: 0.86rem; }
+  .ta-path-go { color: $ta-teal; font-size: 1.2rem; }
+}
+
+a.ta-path:hover { box-shadow: 0 8px 20px rgba(20, 52, 58, 0.14); text-decoration: none; transform: translateY(-2px); }
+
+a.ta-path.ta-path-warm,
+a.ta-path.ta-path-warm:visited {
+  border-color: #f4d7b2;
+  background: $ta-cream;
+
+  > i:first-child { background: $ta-warm; color: #1a1a1a; }
+  .ta-path-go { color: #a85a12; }
+}
+
+.ta-training-list { display: grid; gap: 1rem; }
+
+.ta-training {
+  display: flex;
+  gap: 1rem;
+  padding: 1.35rem;
+  border: 1px solid $grey-color-light;
+  border-radius: 12px;
+  background: #fff;
+
+  > i {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.9rem;
+    height: 2.9rem;
+    border-radius: 10px;
+    background: #dff0ef;
+    color: $ta-teal;
+    font-size: 1.55rem;
+  }
+
+  &:nth-child(2) > i { background: #e3e8fb; color: #34499a; }
+  h3 { margin-top: 0; padding-top: 0; margin-bottom: 0.25rem; font-size: 1.3rem; line-height: 1.25; }
+  p { margin-bottom: 0.8rem; font-size: 0.97rem; line-height: 1.6; }
+}
+
+.ta-pillars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 1rem;
+  list-style: none;
+
+  a, a:visited {
+    display: inline-block;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    background: #e8f3f3;
+    color: #185a5e;
+    font-size: 0.82rem;
+    text-decoration: none;
+  }
+
+  a:hover { background: $ta-teal; color: #fff; text-decoration: none; }
+}
+
+@media screen and (max-width: 700px) {
+  .ta-paths { grid-template-columns: minmax(0, 1fr); }
+  .ta-training { flex-direction: column; }
+}

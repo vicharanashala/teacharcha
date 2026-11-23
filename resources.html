@@ -2,55 +2,78 @@
 layout: default
 title: Resources
 permalink: /resources/
-description: Classroom situations that ask what you would do, with the readings that can help you decide.
+description: Training programmes and FDPs for teachers, with readings, podcasts and videos.
 ---
 
 <section class="ta-page-hero">
   <p class="ta-kicker">Resources</p>
-  <h1>What would you do?</h1>
-  <p>Step into a real-feeling classroom moment, make your call, then see what a good reading adds to it.</p>
+  <h1>What do you need today?</h1>
+  <p>A full programme to grow with, or one good idea to take into tomorrow's class.</p>
 </section>
 
-{% include cast.html %}
+<nav class="ta-paths" aria-label="Types of resources">
+  <a class="ta-path" href="#training">
+    <i class="ph ph-graduation-cap" aria-hidden="true"></i>
+    <span><strong>Training programmes and FDPs</strong><small>CBPAI, with more to come</small></span>
+    <i class="ph ph-arrow-down ta-path-go" aria-hidden="true"></i>
+  </a>
+  <a class="ta-path ta-path-warm" href="#readings">
+    <i class="ph ph-book-open-text" aria-hidden="true"></i>
+    <span><strong>Readings, podcasts and videos</strong><small>Start with a classroom situation</small></span>
+    <i class="ph ph-arrow-down ta-path-go" aria-hidden="true"></i>
+  </a>
+</nav>
 
-{% assign shown = site.resources %}
-{% if shown and shown.size > 0 %}
-  {% assign newest = shown | sort: "added" | reverse %}
-  <div class="ta-filter" role="group" aria-label="Filter situations by category">
-    <button type="button" data-filter="" aria-pressed="true">All</button>
-    {% for category in site.data.resource_categories %}
-      <button type="button" data-filter="{{ category | escape }}" aria-pressed="false">{{ category | escape }}</button>
-    {% endfor %}
-  </div>
-  <div class="ta-resource-list">
-    {% for resource in newest %}
-      {% include resource-card.html resource=resource %}
-    {% endfor %}
-  </div>
-  <div class="ta-empty" id="ta-filter-empty" hidden>
-    <i class="ph ph-books" aria-hidden="true"></i>
-    <p role="status">Situations in this category are on their way.</p>
-  </div>
-  <script>
-    (function () {
-      var buttons = document.querySelectorAll('.ta-filter button');
-      var cards = document.querySelectorAll('.ta-resource');
-      var empty = document.getElementById('ta-filter-empty');
-      buttons.forEach(function (button) {
-        button.addEventListener('click', function () {
-          var wanted = button.getAttribute('data-filter');
-          var visible = 0;
-          buttons.forEach(function (b) { b.setAttribute('aria-pressed', b === button ? 'true' : 'false'); });
-          cards.forEach(function (card) {
-            var match = !wanted || card.getAttribute('data-categories').split('|').indexOf(wanted) !== -1;
-            card.hidden = !match;
-            if (match) { visible += 1; }
+<section class="ta-section" id="training">
+  <h2>Training programmes and FDPs</h2>
+  {% include training.html %}
+</section>
+
+<section class="ta-section" id="readings">
+  <h2>Readings, podcasts and videos</h2>
+  <p>Step into a classroom moment, make your call, then see what a good reading adds to it. Podcasts and videos are coming soon.</p>
+
+  {% include cast.html %}
+
+  {% assign shown = site.resources %}
+  {% if shown and shown.size > 0 %}
+    {% assign newest = shown | sort: "added" | reverse %}
+    <div class="ta-filter" role="group" aria-label="Filter situations by category">
+      <button type="button" data-filter="" aria-pressed="true">All</button>
+      {% for category in site.data.resource_categories %}
+        <button type="button" data-filter="{{ category | escape }}" aria-pressed="false">{{ category | escape }}</button>
+      {% endfor %}
+    </div>
+    <div class="ta-resource-list">
+      {% for resource in newest %}
+        {% include resource-card.html resource=resource %}
+      {% endfor %}
+    </div>
+    <div class="ta-empty" id="ta-filter-empty" hidden>
+      <i class="ph ph-books" aria-hidden="true"></i>
+      <p role="status">Situations in this category are on their way.</p>
+    </div>
+    <script>
+      (function () {
+        var buttons = document.querySelectorAll('.ta-filter button');
+        var cards = document.querySelectorAll('.ta-resource');
+        var empty = document.getElementById('ta-filter-empty');
+        buttons.forEach(function (button) {
+          button.addEventListener('click', function () {
+            var wanted = button.getAttribute('data-filter');
+            var visible = 0;
+            buttons.forEach(function (b) { b.setAttribute('aria-pressed', b === button ? 'true' : 'false'); });
+            cards.forEach(function (card) {
+              var match = !wanted || card.getAttribute('data-categories').split('|').indexOf(wanted) !== -1;
+              card.hidden = !match;
+              if (match) { visible += 1; }
+            });
+            empty.hidden = visible !== 0;
           });
-          empty.hidden = visible !== 0;
         });
-      });
-    })();
-  </script>
-{% endif %}
+      })();
+    </script>
+  {% endif %}
+</section>
 
 {% include come-back.html %}
