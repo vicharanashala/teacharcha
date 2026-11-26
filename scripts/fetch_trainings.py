@@ -106,6 +106,33 @@ def nitttr_chd():
     return out
 
 
+# ---- Themes: a rough topic label from the title, so the page can group programmes. ----
+# First match wins, top to bottom. To fix a wrong label, add a word to the right line.
+THEMES = [
+    ("New teacher induction", None),
+    ("AI, data and digital", r"\bai\b|cbpai|quantum|\biot\b|sensor|ar vr|\bvr\b|intelligen|a\.i|artificial intelligence|machine learning|data science|data analy|\bict\b|digital|mooc|e-content|\blms\b|cyber|python|computer|web development|video production|open source|technology enabled|with technology|neural"),
+    ("Indian Knowledge Systems", r"\biks\b|gurukul|indian knowledge|vedic|sanskrit|rishi|bharatiya|indian philosophy|ayurveda"),
+    ("Environment and sustainability", r"environment|sustainab|climate|disaster|green|biodiversity|natural resource"),
+    ("Research methods and writing", r"research|publication|statistic|qualitative"),
+    ("Wellbeing, health and yoga", r"mental health|substance|wellbeing|well-being|wellness|yoga|physical education|health|counselling|cognitive"),
+    ("Teaching, curriculum and NEP", r"pedagog|assessment|evaluation|learning disabilit|educators|immersive learning|human values|teaching|\bnep\b|curriculum|outcome-based|teacher education|\beducation\b|classroom|design thinking|young adults|learners"),
+    ("Leadership and administration", r"leadership|administrat|principal|governance|administration|accreditation|naac|ranking|non-teaching|non teaching|non-academic|non academic|work culture|institutional"),
+    ("Sciences and engineering", r"(?<!social )(?<!political )(?<!library and information )science|electric vehicle|structural|staad|machine tool|biotech|botany|zoology|physic|chemi|biolog|material|engineer|mathemat|maths|nano|genomic|pharma|energy|hydrogen|antenna|machining|instrumentation|optical|biomedical|finite element|molecule|stem\b"),
+    ("Languages, literature and arts", r"language|literature|english|hindi|tamil|kannada|telugu|urdu|punjabi|linguist|sahitya|\barts?\b|multilingual|[ऀ-ॿ]"),
+    ("Social sciences, commerce and law", r"social|humanities|laws?\b|relation|security|geopolitic|media|tribal|cultur|innovation|enterpreneur|creativity|econom|commerce|management|tourism|\blaw\b|human rights|gender|women|multicultural|entrepreneur|startup|community|library|psycholog"),
+]
+OTHER = "Multidisciplinary and general"
+
+def theme(p):
+    if p["type"] == "Faculty Induction Programme" or "induction" in p["title"].lower():
+        return THEMES[0][0]
+    t = p["title"].lower()
+    for name, rx in THEMES[1:]:
+        if re.search(rx, t):
+            return name
+    return OTHER
+
+
 SOURCES = {"UGC MMTTP portal": ugc, "NITTTR Chandigarh": nitttr_chd}
 
 
@@ -131,6 +158,7 @@ def main():
         if p["end"] >= TODAY.isoformat() and key not in seen:
             seen.add(key)
             p["running"] = p["start"] <= TODAY.isoformat()
+            p["theme"] = theme(p)
             live.append(p)
     live.sort(key=lambda p: (p["start"], p["organiser"]))
 

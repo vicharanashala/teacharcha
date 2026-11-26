@@ -862,40 +862,53 @@ a.ta-path.ta-path-warm:visited {
   input:focus { outline: none; }
   &:focus-within { outline: 2px solid #e48f38; outline-offset: 2px; }
 }
+.ta-tr-row { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; justify-content: space-between; }
+.ta-tr-group-by {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem;
+  > span { font-size: 0.85rem; font-weight: 600; color: $ta-ink; margin-right: 0.2rem; }
+  button {
+    font: inherit; font-size: 0.92rem; padding: 0.4rem 0.85rem; border-radius: 99px; cursor: pointer;
+    border: 1px solid #1f6f74; background: #fff; color: #1f6f74;
+  }
+  button[aria-pressed="true"] { background: #1f6f74; color: #fff; }
+  button:focus-visible { outline: 2px solid #e48f38; outline-offset: 2px; }
+}
 .ta-tr-selects {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 0.7rem;
-  label { display: grid; gap: 0.25rem; font-size: 0.85rem; font-weight: 600; color: $ta-ink; }
-  select { font: inherit; font-weight: 400; padding: 0.5rem; border: 1px solid #c9dcdc; border-radius: 6px; background: #fff; }
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  select { font: inherit; font-size: 0.92rem; padding: 0.4rem 0.5rem; border: 1px solid #c9dcdc; border-radius: 6px; background: #fff; }
 }
 .ta-tr-check { font-size: 0.92rem; display: flex; gap: 0.45rem; align-items: center; }
-.ta-tr-count { margin: 1rem 0 0.6rem; font-weight: 600; color: $ta-ink; }
-.ta-tr-list { display: grid; gap: 0.8rem; }
+.ta-tr-count { margin: 1.2rem 0 0.5rem; font-weight: 600; color: $ta-ink; }
+.ta-tr-jump {
+  display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.6rem;
+  a { padding: 0.25rem 0.7rem; border-radius: 99px; background: #fff; border: 1px solid $grey-color-light; font-size: 0.85rem; color: $ta-ink; text-decoration: none; }
+  a:hover { border-color: #1f6f74; }
+  span { color: #1f6f74; font-weight: 600; margin-left: 0.15rem; }
+}
+.ta-tr-group {
+  padding-top: 1.4rem; scroll-margin-top: 1rem;
+  h3 {
+    display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 0.8rem; padding-bottom: 0.4rem;
+    border-bottom: 2px solid #1f6f74; font-size: 1.25rem; color: $ta-ink;
+    span { font-size: 0.85rem; font-weight: 600; color: #fff; background: #1f6f74; border-radius: 99px; padding: 0.05rem 0.55rem; }
+  }
+}
+.ta-tr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr)); gap: 0.75rem; }
 .ta-tr {
-  display: grid; grid-template-columns: 8.5rem 1fr; gap: 1rem;
-  padding: 1rem 1.1rem; border: 1px solid $grey-color-light; border-radius: 10px; background: #fff;
-  h3 { margin: 0.2rem 0 0.15rem; font-size: 1.08rem; line-height: 1.35; }
+  display: flex; flex-direction: column; gap: 0.25rem;
+  padding: 0.85rem 1rem; border: 1px solid $grey-color-light; border-left: 4px solid #1f6f74; border-radius: 8px; background: #fff;
+  p { margin: 0; }
+  h4 { margin: 0.1rem 0 0; font-size: 1rem; line-height: 1.35; }
 }
-.ta-tr-date {
-  display: flex; flex-direction: column; padding-right: 0.9rem; border-right: 3px solid #1f6f74;
-  font-size: 0.85rem; color: #555;
-  strong { font-size: 1.05rem; color: $ta-ink; }
-}
-.ta-tr-tags {
-  display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; font-size: 0.78rem;
-  span { padding: 0.12rem 0.5rem; border-radius: 99px; background: #e8f3f3; color: #185a5e; }
-  .ta-tr-live { background: #fdebd3; color: #8a4b0f; }
-}
-.ta-tr-org { margin: 0 0 0.4rem; color: #555; }
-.ta-tr-links {
-  display: flex; flex-wrap: wrap; gap: 1rem; margin: 0; font-size: 0.92rem;
+.ta-tr-when { font-size: 0.82rem; color: #555; strong { color: $ta-ink; } }
+.ta-tr-live { margin-left: 0.3rem; padding: 0.05rem 0.45rem; border-radius: 99px; background: #fdebd3; color: #8a4b0f; font-size: 0.75rem; }
+.ta-tr-org { font-size: 0.9rem; color: #555; }
+.ta-tr-foot {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.9rem; margin-top: auto !important; padding-top: 0.4rem; font-size: 0.88rem;
   a { color: #1f6f74; font-weight: 500; }
 }
-.ta-tr-more { margin-top: 1rem; }
-.ta-tr-meta { margin-top: 1.6rem; font-size: 0.85rem; color: #666; }
-@media (max-width: 600px) {
-  .ta-tr { grid-template-columns: 1fr; gap: 0.5rem; }
-  .ta-tr-date { flex-direction: row; flex-wrap: wrap; gap: 0.4rem; border-right: 0; border-bottom: 2px solid #1f6f74; padding: 0 0 0.4rem; }
-}
+.ta-tr-tag { margin-right: auto; padding: 0.1rem 0.5rem; border-radius: 99px; background: #e8f3f3; color: #185a5e; font-size: 0.75rem; }
+.ta-tr-more { margin-top: 0.8rem; }
+.ta-tr-meta { margin-top: 1.8rem; font-size: 0.85rem; color: #666; }
 .ta-training + .ta-training-list { margin-top: 1rem; }
-.ta-tr p { margin-bottom: 0; }
-.ta-tr .ta-tr-org { margin-bottom: 0.45rem; }
+.ta-tr h4 { text-transform: none; letter-spacing: normal; color: $ta-ink; font-weight: 600; }
