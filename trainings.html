@@ -21,18 +21,17 @@ description: Faculty training programmes and FDPs running across India, gathered
 </p>
 
 <div class="ta-tr-tools">
+  <div class="ta-tr-seg" role="radiogroup" aria-label="Browse programmes by">
+    <button type="button" role="radio" data-by="theme" aria-checked="true"><i class="ph-duotone ph-shapes" aria-hidden="true"></i><span>By theme</span></button>
+    <button type="button" role="radio" data-by="month" aria-checked="false"><i class="ph-duotone ph-calendar-blank" aria-hidden="true"></i><span>By month</span></button>
+    <button type="button" role="radio" data-by="length" aria-checked="false"><i class="ph-duotone ph-hourglass-medium" aria-hidden="true"></i><span>By length</span></button>
+  </div>
   <label class="ta-tr-search">
     <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
     <span class="ta-visually-hidden">Search programmes</span>
-    <input type="search" id="tr-q" placeholder="Search a topic or institution, e.g. AI, Chemistry, Hyderabad">
+    <input type="search" id="tr-q" placeholder="Or search a topic or institution, e.g. Chemistry, Hyderabad">
   </label>
   <div class="ta-tr-row">
-    <div class="ta-tr-group-by" role="group" aria-label="Group programmes by">
-      <span>Group by</span>
-      <button type="button" data-by="month" aria-pressed="true"><i class="ph ph-calendar-blank" aria-hidden="true"></i> Month</button>
-      <button type="button" data-by="theme" aria-pressed="false"><i class="ph ph-shapes" aria-hidden="true"></i> Theme</button>
-      <button type="button" data-by="length" aria-pressed="false"><i class="ph ph-hourglass-medium" aria-hidden="true"></i> Length</button>
-    </div>
     <div class="ta-tr-selects">
       <label><span class="ta-visually-hidden">Mode</span>
         <select id="tr-mode"><option value="">Any mode</option></select>
@@ -41,13 +40,11 @@ description: Faculty training programmes and FDPs running across India, gathered
         <select id="tr-type"><option value="">Any type</option></select>
       </label>
     </div>
+    <label class="ta-tr-switch"><input type="checkbox" id="tr-running" role="switch"><span class="ta-tr-knob" aria-hidden="true"></span> Include programmes already under way</label>
   </div>
-  <label class="ta-tr-check"><input type="checkbox" id="tr-running"> Also show programmes already under way</label>
 </div>
 
-<p class="ta-tr-count" id="tr-count" role="status"></p>
-<nav class="ta-tr-jump" id="tr-jump" aria-label="Jump to a group"></nav>
-<div id="tr-groups"></div>
+<div id="tr-view" aria-live="polite"></div>
 
 <p class="ta-tr-meta">
   Last updated {{ t.updated | date: "%-d %B %Y" }}. Sources:
@@ -60,12 +57,28 @@ description: Faculty training programmes and FDPs running across India, gathered
 (function () {
   var all = JSON.parse(document.getElementById('tr-data').textContent);
   var el = function (id) { return document.getElementById(id); };
-  var q = el('tr-q'), type = el('tr-type'), mode = el('tr-mode'), running = el('tr-running');
-  var groupsBox = el('tr-groups'), jump = el('tr-jump'), count = el('tr-count');
-  var byButtons = document.querySelectorAll('.ta-tr-group-by button');
-  var by = 'month', FIRST = 6, opened = {};
+  var q = el('tr-q'), type = el('tr-type'), mode = el('tr-mode'), running = el('tr-running'), view = el('tr-view');
+  var seg = document.querySelectorAll('.ta-tr-seg button');
+  var state = { by: 'theme', group: null, shown: 24 };
   var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   var LENGTHS = ['Up to a week', 'About two weeks', 'Three to four weeks'];
+  // One colour and icon per theme. Unknown themes fall back to the last palette entry.
+  var THEME_LOOK = {
+    'AI, data and digital': ['c1', 'ph-cpu'],
+    'New teacher induction': ['c2', 'ph-chalkboard-teacher'],
+    'Teaching, curriculum and NEP': ['c3', 'ph-student'],
+    'Social sciences, commerce and law': ['c4', 'ph-scales'],
+    'Sciences and engineering': ['c5', 'ph-flask'],
+    'Environment and sustainability': ['c6', 'ph-leaf'],
+    'Wellbeing, health and yoga': ['c7', 'ph-heartbeat'],
+    'Indian Knowledge Systems': ['c8', 'ph-scroll'],
+    'Research methods and writing': ['c9', 'ph-microscope'],
+    'Languages, literature and arts': ['c10', 'ph-translate'],
+    'Leadership and administration': ['c11', 'ph-buildings'],
+    'Multidisciplinary and general': ['c12', 'ph-squares-four']
+  };
+  var LENGTH_LOOK = { 'Up to a week': ['c6', 'ph-timer'], 'About two weeks': ['c3', 'ph-hourglass-medium'], 'Three to four weeks': ['c11', 'ph-calendar-dots'] };
+  var COLOURS = ['c1','c3','c5','c7','c9','c2','c4','c6','c8','c10','c11','c12'];
 
   all.forEach(function (p) {
     p.days = Math.round((new Date(p.end) - new Date(p.start)) / 864e5) + 1;
@@ -80,70 +93,91 @@ description: Faculty training programmes and FDPs running across India, gathered
 
   function nice(d) { var x = d.split('-'); return +x[2] + ' ' + MONTHS[+x[1] - 1].slice(0, 3); }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
-  function slug(s) { return 'g-' + s.toLowerCase().replace(/[^a-z0-9]+/g, '-'); }
+  function plural(n) { return n + (n === 1 ? ' programme' : ' programmes'); }
 
-  function card(p) {
-    var icon = p.mode === 'Online' ? 'ph-monitor' : p.mode === 'Hybrid' ? 'ph-arrows-left-right' : 'ph-map-pin';
-    var tag = by === 'theme' ? p.type : p.theme;
-    return '<article class="ta-tr">' +
-      '<p class="ta-tr-when"><strong>' + nice(p.start) + ' to ' + nice(p.end) + '</strong> · ' + p.days + ' days · <i class="ph ' + icon + '" aria-hidden="true"></i> ' + esc(p.mode) +
-        (p.running ? ' <span class="ta-tr-live">Under way</span>' : '') + '</p>' +
-      '<h4>' + esc(p.title) + '</h4>' +
-      '<p class="ta-tr-org">' + esc(p.organiser) + '</p>' +
-      '<p class="ta-tr-foot"><span class="ta-tr-tag">' + esc(tag) + '</span>' +
-        '<a href="' + esc(p.link) + '" target="_blank" rel="noopener noreferrer">Apply <i class="ph ph-arrow-square-out" aria-hidden="true"></i><span class="ta-visually-hidden"> (' + esc(p.apply_note) + ', opens in a new tab)</span></a>' +
-        (p.brochure ? '<a href="' + esc(p.brochure) + '" target="_blank" rel="noopener noreferrer">Brochure</a>' : '') + '</p>' +
-      '</article>';
-  }
-
-  function render() {
+  function filtered() {
     var words = q.value.toLowerCase().split(/\s+/).filter(Boolean);
-    var hits = all.filter(function (p) {
+    return all.filter(function (p) {
       if (!running.checked && p.running) return false;
       if (type.value && p.type !== type.value) return false;
       if (mode.value && p.mode !== mode.value) return false;
       var hay = (p.title + ' ' + p.organiser + ' ' + p.type).toLowerCase();
       return words.every(function (w) { return hay.indexOf(w) !== -1; });
     });
-    count.textContent = hits.length ? hits.length + (hits.length === 1 ? ' programme' : ' programmes') : 'No programmes match. Try fewer words or another filter.';
-
-    var groups = {}, order = [];
-    hits.forEach(function (p) {
-      var k = by === 'month' ? (p.running ? 'Under way now' : p.month) : by === 'theme' ? p.theme : p.length;
-      if (!groups[k]) { groups[k] = []; order.push(k); }
-      groups[k].push(p);
-    });
-    if (by === 'theme') order.sort(function (a, b) { return groups[b].length - groups[a].length; });
-    if (by === 'length') order = LENGTHS.filter(function (k) { return groups[k]; });
-    if (by === 'month' && groups['Under way now']) order = ['Under way now'].concat(order.filter(function (k) { return k !== 'Under way now'; }));
-
-    jump.innerHTML = order.length > 1 ? order.map(function (k) {
-      return '<a href="#' + slug(k) + '">' + esc(k) + ' <span>' + groups[k].length + '</span></a>';
-    }).join('') : '';
-
-    groupsBox.innerHTML = order.map(function (k) {
-      var list = groups[k], open = opened[by + k] || words.length > 0;
-      var shown = open ? list : list.slice(0, FIRST);
-      return '<section class="ta-tr-group" id="' + slug(k) + '">' +
-        '<h3>' + esc(k) + ' <span>' + list.length + '</span></h3>' +
-        '<div class="ta-tr-grid">' + shown.map(card).join('') + '</div>' +
-        (list.length > shown.length ? '<button type="button" class="ta-button ta-button-quiet ta-tr-more" data-key="' + esc(by + k) + '">Show all ' + list.length + '</button>' : '') +
-        '</section>';
-    }).join('');
+  }
+  function keyOf(p) { return state.by === 'theme' ? p.theme : state.by === 'length' ? p.length : (p.running ? 'Under way now' : p.month); }
+  function lookOf(k, i) {
+    if (state.by === 'theme') return THEME_LOOK[k] || ['c12', 'ph-squares-four'];
+    if (state.by === 'length') return LENGTH_LOOK[k];
+    return [COLOURS[i % COLOURS.length], k === 'Under way now' ? 'ph-play-circle' : 'ph-calendar-blank'];
   }
 
-  groupsBox.addEventListener('click', function (e) {
-    var b = e.target.closest('.ta-tr-more'); if (!b) return;
-    opened[b.getAttribute('data-key')] = true; render();
+  function programme(p) {
+    var icon = p.mode === 'Online' ? 'ph-monitor' : p.mode === 'Hybrid' ? 'ph-arrows-left-right' : 'ph-map-pin';
+    return '<article class="ta-tr">' +
+      '<p class="ta-tr-when"><strong>' + nice(p.start) + ' to ' + nice(p.end) + '</strong> · ' + p.days + ' days · <i class="ph ' + icon + '" aria-hidden="true"></i> ' + esc(p.mode) +
+        (p.running ? ' <span class="ta-tr-live">Under way</span>' : '') + '</p>' +
+      '<h4>' + esc(p.title) + '</h4>' +
+      '<p class="ta-tr-org">' + esc(p.organiser) + '</p>' +
+      '<p class="ta-tr-foot"><span class="ta-tr-tag">' + esc(state.by === 'theme' ? p.type : p.theme) + '</span>' +
+        '<a href="' + esc(p.link) + '" target="_blank" rel="noopener noreferrer">Apply <i class="ph ph-arrow-square-out" aria-hidden="true"></i><span class="ta-visually-hidden"> (' + esc(p.apply_note) + ', opens in a new tab)</span></a>' +
+        (p.brochure ? '<a href="' + esc(p.brochure) + '" target="_blank" rel="noopener noreferrer">Brochure</a>' : '') + '</p>' +
+      '</article>';
+  }
+  function list(items, look, title, back) {
+    var shown = items.slice(0, state.shown);
+    return '<div class="' + look[0] + '"><div class="ta-tr-open">' +
+      (back ? '<button type="button" class="ta-tr-back" data-back><i class="ph ph-arrow-left" aria-hidden="true"></i> All ' + (state.by === 'theme' ? 'themes' : state.by === 'month' ? 'months' : 'lengths') + '</button>' : '') +
+      '<h2><i class="ph-duotone ' + look[1] + '" aria-hidden="true"></i> ' + esc(title) + ' <span>' + plural(items.length) + '</span></h2></div>' +
+      (items.length ? '<div class="ta-tr-grid">' + shown.map(programme).join('') + '</div>' : '<p class="ta-tr-none">No programmes here with these filters.</p>') +
+      (items.length > shown.length ? '<button type="button" class="ta-button ta-button-quiet ta-tr-more" data-more>Show more</button>' : '') + '</div>';
+  }
+
+  function render() {
+    var hits = filtered();
+    if (q.value.trim()) { view.innerHTML = list(hits, ['c1', 'ph-magnifying-glass'], 'Search results', false); return; }
+    var groups = {}, order = [];
+    hits.forEach(function (p) { var k = keyOf(p); if (!groups[k]) { groups[k] = []; order.push(k); } groups[k].push(p); });
+    if (state.by === 'theme') order.sort(function (a, b) { return groups[b].length - groups[a].length; });
+    if (state.by === 'length') order = LENGTHS.filter(function (k) { return groups[k]; });
+    if (state.by === 'month' && groups['Under way now']) order = ['Under way now'].concat(order.filter(function (k) { return k !== 'Under way now'; }));
+
+    if (state.group) {
+      var i = order.indexOf(state.group);
+      view.innerHTML = list(groups[state.group] || [], lookOf(state.group, Math.max(i, 0)), state.group, true);
+      return;
+    }
+    view.innerHTML = '<p class="ta-tr-count">' + plural(hits.length) + ' in ' + order.length + ' groups. Pick one to see its programmes.</p>' +
+      '<div class="ta-tr-cards">' + order.map(function (k, i) {
+        var look = lookOf(k, i), g = groups[k];
+        var online = g.filter(function (p) { return p.mode === 'Online'; }).length;
+        return '<button type="button" class="ta-tr-card ' + look[0] + '" data-group="' + esc(k) + '">' +
+          '<i class="ph-duotone ' + look[1] + '" aria-hidden="true"></i>' +
+          '<span class="ta-tr-card-name">' + esc(k) + '</span>' +
+          '<span class="ta-tr-card-count"><strong>' + g.length + '</strong> ' + (g.length === 1 ? 'programme' : 'programmes') + '</span>' +
+          '<span class="ta-tr-card-sub">' + online + ' online · next starts ' + nice(g[0].start) + '</span>' +
+          '</button>';
+      }).join('') + '</div>';
+  }
+
+  view.addEventListener('click', function (e) {
+    var card = e.target.closest('[data-group]'), back = e.target.closest('[data-back]'), more = e.target.closest('[data-more]');
+    if (card) { state.group = card.getAttribute('data-group'); state.shown = 24; history.pushState({ g: state.group, by: state.by }, ''); render(); view.scrollIntoView({ behavior: 'smooth' }); }
+    if (back) { history.back(); }
+    if (more) { state.shown += 24; render(); }
   });
-  byButtons.forEach(function (b) {
+  window.addEventListener('popstate', function (e) {
+    state.group = e.state && e.state.g || null; render();
+  });
+  seg.forEach(function (b) {
     b.addEventListener('click', function () {
-      by = b.getAttribute('data-by');
-      byButtons.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-      render();
+      state.by = b.getAttribute('data-by'); state.group = null; state.shown = 24;
+      seg.forEach(function (x) { x.setAttribute('aria-checked', x === b ? 'true' : 'false'); });
+      history.replaceState(null, ''); render();
     });
   });
-  [q, type, mode, running].forEach(function (x) { x.addEventListener('input', render); });
+  [q, type, mode, running].forEach(function (x) { x.addEventListener('input', function () { state.shown = 24; render(); }); });
+  history.replaceState(null, '');
   render();
 })();
 </script>
