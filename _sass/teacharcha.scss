@@ -842,3 +842,60 @@ a.ta-path.ta-path-warm:visited {
   .ta-paths { grid-template-columns: minmax(0, 1fr); }
   .ta-training { flex-direction: column; }
 }
+
+// ---- Find a faculty training (/trainings/) ----
+.ta-tr-note {
+  display: flex; gap: 0.6rem; align-items: flex-start;
+  padding: 0.9rem 1.1rem; border-radius: 8px; background: #fff6ea; border: 1px solid #f3d9b5;
+  font-size: 0.95rem; line-height: 1.5;
+  i { flex: none; color: #b8681c; font-size: 1.3rem; margin-top: 0.05rem; }
+}
+.ta-tr-tools {
+  margin: 1.4rem 0 0.6rem; padding: 1.1rem 1.2rem; border-radius: 10px; background: #f2f7f7;
+  display: grid; gap: 0.9rem;
+}
+.ta-tr-search {
+  display: flex; align-items: center; gap: 0.5rem; padding: 0 0.8rem;
+  background: #fff; border: 1px solid #c9dcdc; border-radius: 8px;
+  i { color: $ta-ink; font-size: 1.2rem; }
+  input { flex: 1; border: 0; padding: 0.7rem 0; font: inherit; background: transparent; min-width: 0; }
+  input:focus { outline: none; }
+  &:focus-within { outline: 2px solid #e48f38; outline-offset: 2px; }
+}
+.ta-tr-selects {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 0.7rem;
+  label { display: grid; gap: 0.25rem; font-size: 0.85rem; font-weight: 600; color: $ta-ink; }
+  select { font: inherit; font-weight: 400; padding: 0.5rem; border: 1px solid #c9dcdc; border-radius: 6px; background: #fff; }
+}
+.ta-tr-check { font-size: 0.92rem; display: flex; gap: 0.45rem; align-items: center; }
+.ta-tr-count { margin: 1rem 0 0.6rem; font-weight: 600; color: $ta-ink; }
+.ta-tr-list { display: grid; gap: 0.8rem; }
+.ta-tr {
+  display: grid; grid-template-columns: 8.5rem 1fr; gap: 1rem;
+  padding: 1rem 1.1rem; border: 1px solid $grey-color-light; border-radius: 10px; background: #fff;
+  h3 { margin: 0.2rem 0 0.15rem; font-size: 1.08rem; line-height: 1.35; }
+}
+.ta-tr-date {
+  display: flex; flex-direction: column; padding-right: 0.9rem; border-right: 3px solid #1f6f74;
+  font-size: 0.85rem; color: #555;
+  strong { font-size: 1.05rem; color: $ta-ink; }
+}
+.ta-tr-tags {
+  display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; font-size: 0.78rem;
+  span { padding: 0.12rem 0.5rem; border-radius: 99px; background: #e8f3f3; color: #185a5e; }
+  .ta-tr-live { background: #fdebd3; color: #8a4b0f; }
+}
+.ta-tr-org { margin: 0 0 0.4rem; color: #555; }
+.ta-tr-links {
+  display: flex; flex-wrap: wrap; gap: 1rem; margin: 0; font-size: 0.92rem;
+  a { color: #1f6f74; font-weight: 500; }
+}
+.ta-tr-more { margin-top: 1rem; }
+.ta-tr-meta { margin-top: 1.6rem; font-size: 0.85rem; color: #666; }
+@media (max-width: 600px) {
+  .ta-tr { grid-template-columns: 1fr; gap: 0.5rem; }
+  .ta-tr-date { flex-direction: row; flex-wrap: wrap; gap: 0.4rem; border-right: 0; border-bottom: 2px solid #1f6f74; padding: 0 0 0.4rem; }
+}
+.ta-training + .ta-training-list { margin-top: 1rem; }
+.ta-tr p { margin-bottom: 0; }
+.ta-tr .ta-tr-org { margin-bottom: 0.45rem; }

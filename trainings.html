@@ -1,0 +1,110 @@
+---
+layout: default
+title: Find a faculty training
+permalink: /trainings/
+description: Faculty training programmes and FDPs running across India, gathered in one place and updated every day.
+---
+{%- comment -%}
+  The list comes from _data/trainings.json. A script (scripts/fetch_trainings.py) refreshes that
+  file every morning through GitHub Actions. Nothing on this page needs editing by hand.
+{%- endcomment -%}
+{% assign t = site.data.trainings %}
+
+<section class="ta-page-hero">
+  <p class="ta-kicker">Faculty trainings</p>
+  <h1>Faculty trainings across India, in one place</h1>
+  <p>Refresher courses, short-term programmes, induction programmes and FDPs from across India, updated every morning. Find one that fits, then apply on the organiser's own site.</p>
+</section>
+
+<p class="ta-tr-note"><i class="ph ph-info" aria-hidden="true"></i>
+  <span>We only list these programmes, from public pages. We do not run, certify or recommend them. Dates and details can change, so always check with the organiser before you apply.</span>
+</p>
+
+<div class="ta-tr-tools">
+  <label class="ta-tr-search">
+    <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+    <span class="ta-visually-hidden">Search programmes</span>
+    <input type="search" id="tr-q" placeholder="Search a topic or institution, e.g. AI, Chemistry, Hyderabad">
+  </label>
+  <div class="ta-tr-selects">
+    <label>Type
+      <select id="tr-type"><option value="">All types</option></select>
+    </label>
+    <label>Mode
+      <select id="tr-mode"><option value="">Online, physical or hybrid</option></select>
+    </label>
+    <label>Starts in
+      <select id="tr-month"><option value="">Any month</option></select>
+    </label>
+  </div>
+  <label class="ta-tr-check"><input type="checkbox" id="tr-running"> Also show programmes already under way</label>
+</div>
+
+<p class="ta-tr-count" id="tr-count" role="status"></p>
+<div class="ta-tr-list" id="tr-list"></div>
+<button type="button" class="ta-button ta-button-quiet ta-tr-more" id="tr-more" hidden>Show more</button>
+
+<p class="ta-tr-meta">
+  Last updated {{ t.updated | date: "%-d %B %Y" }}. Sources:
+  {% for s in t.sources %}{{ s[0] }}{% unless forloop.last %}, {% endunless %}{% endfor %}.
+  More sources are being added. Know a programme or a page we should include? <a href="{{ '/community/' | relative_url }}">Tell us</a>.
+</p>
+
+<script id="tr-data" type="application/json">{{ t.programmes | jsonify }}</script>
+<script>
+(function () {
+  var all = JSON.parse(document.getElementById('tr-data').textContent);
+  var el = function (id) { return document.getElementById(id); };
+  var q = el('tr-q'), type = el('tr-type'), mode = el('tr-mode'), month = el('tr-month'), running = el('tr-running');
+  var list = el('tr-list'), count = el('tr-count'), more = el('tr-more');
+  var PAGE = 30, shown = PAGE;
+  var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  function fill(select, values, label) {
+    values.forEach(function (v) {
+      var o = document.createElement('option'); o.value = v; o.textContent = label ? label(v) : v; select.appendChild(o);
+    });
+  }
+  function uniq(key) { return all.map(key).filter(function (v, i, a) { return v && a.indexOf(v) === i; }).sort(); }
+  fill(type, uniq(function (p) { return p.type; }));
+  fill(mode, uniq(function (p) { return p.mode; }));
+  fill(month, uniq(function (p) { return p.start.slice(0, 7); }), function (v) { return MONTHS[+v.slice(5) - 1] + ' ' + v.slice(0, 4); });
+
+  function nice(d) { var x = d.split('-'); return +x[2] + ' ' + MONTHS[+x[1] - 1].slice(0, 3) + ' ' + x[0]; }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function days(p) { return Math.round((new Date(p.end) - new Date(p.start)) / 864e5) + 1; }
+
+  function card(p) {
+    var icon = p.mode === 'Online' ? 'ph-monitor' : p.mode === 'Hybrid' ? 'ph-arrows-left-right' : 'ph-map-pin';
+    return '<article class="ta-tr">' +
+      '<div class="ta-tr-date"><strong>' + nice(p.start) + '</strong><span>to ' + nice(p.end) + '</span><span>' + days(p) + ' days</span></div>' +
+      '<div class="ta-tr-body">' +
+        '<p class="ta-tr-tags"><span>' + esc(p.type) + '</span><span><i class="ph ' + icon + '" aria-hidden="true"></i> ' + esc(p.mode) + '</span>' +
+          (p.running ? '<span class="ta-tr-live">Under way</span>' : '') + '</p>' +
+        '<h3>' + esc(p.title) + '</h3>' +
+        '<p class="ta-tr-org">' + esc(p.organiser) + '</p>' +
+        '<p class="ta-tr-links"><a href="' + esc(p.link) + '" target="_blank" rel="noopener noreferrer">' + esc(p.apply_note) + ' <i class="ph ph-arrow-square-out" aria-hidden="true"></i></a>' +
+          (p.brochure ? ' <a href="' + esc(p.brochure) + '" target="_blank" rel="noopener noreferrer">Brochure (PDF)</a>' : '') + '</p>' +
+      '</div></article>';
+  }
+
+  function render(reset) {
+    if (reset) shown = PAGE;
+    var words = q.value.toLowerCase().split(/\s+/).filter(Boolean);
+    var hits = all.filter(function (p) {
+      if (!running.checked && p.running) return false;
+      if (type.value && p.type !== type.value) return false;
+      if (mode.value && p.mode !== mode.value) return false;
+      if (month.value && p.start.slice(0, 7) !== month.value) return false;
+      var hay = (p.title + ' ' + p.organiser + ' ' + p.type).toLowerCase();
+      return words.every(function (w) { return hay.indexOf(w) !== -1; });
+    });
+    count.textContent = hits.length ? hits.length + (hits.length === 1 ? ' programme' : ' programmes') + ' found' : 'No programmes match. Try fewer words or another month.';
+    list.innerHTML = hits.slice(0, shown).map(card).join('');
+    more.hidden = hits.length <= shown;
+  }
+  [q, type, mode, month, running].forEach(function (x) { x.addEventListener('input', function () { render(true); }); });
+  more.addEventListener('click', function () { shown += PAGE; render(false); });
+  render(true);
+})();
+</script>

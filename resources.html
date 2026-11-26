@@ -14,7 +14,7 @@ description: Training programmes and FDPs for teachers, with readings, podcasts 
 <nav class="ta-paths" aria-label="Types of resources">
   <a class="ta-path" href="#training">
     <i class="ph ph-graduation-cap" aria-hidden="true"></i>
-    <span><strong>Training programmes and FDPs</strong><small>CBPAI, with more to come</small></span>
+    <span><strong>Training programmes and FDPs</strong><small>400+ FDPs across India, updated daily</small></span>
     <i class="ph ph-arrow-down ta-path-go" aria-hidden="true"></i>
   </a>
   <a class="ta-path ta-path-warm" href="#readings">
@@ -26,6 +26,14 @@ description: Training programmes and FDPs for teachers, with readings, podcasts 
 
 <section class="ta-section" id="training">
   <h2>Training programmes and FDPs</h2>
+  <article class="ta-training">
+    <i class="ph ph-calendar-check" aria-hidden="true"></i>
+    <div>
+      <h3>Find a faculty training</h3>
+      <p>{{ site.data.trainings.programmes | size }} refresher courses, short-term programmes and FDPs from across India, gathered from public pages and updated every day. Search by topic, mode or month.</p>
+      <a class="ta-button" href="{{ '/trainings/' | relative_url }}">See all current trainings</a>
+    </div>
+  </article>
   {% include training.html %}
 </section>
 
