@@ -1,9 +1,9 @@
 {
- "updated": "2026-11-26",
+ "updated": "2026-11-27",
  "sources": {
   "UGC MMTTP portal": {
    "ok": true,
-   "count": 4289
+   "count": 4293
   },
   "NITTTR Chandigarh": {
    "ok": true,
@@ -164,20 +164,6 @@
    "source": "UGC MMTTP portal",
    "running": true,
    "theme": "New teacher induction"
-  },
-  {
-   "title": "Physical Education (Online)",
-   "organiser": "University of Mysore",
-   "type": "Refresher Course",
-   "mode": "Physical",
-   "start": "2026-11-12",
-   "end": "2026-11-26",
-   "brochure": "",
-   "link": "https://mmc.ugc.ac.in/",
-   "apply_note": "Apply on the UGC MMTTP portal",
-   "source": "UGC MMTTP portal",
-   "running": true,
-   "theme": "Wellbeing, health and yoga"
   },
   {
    "title": "RC in Capacity Building Programme on IKS",
@@ -922,20 +908,6 @@
    "theme": "Environment and sustainability"
   },
   {
-   "title": "Information & Communication Technology and Communication Skills (Non Teaching Staff)",
-   "organiser": "University of Lucknow",
-   "type": "Short Term Programme / FDP",
-   "mode": "Physical",
-   "start": "2026-11-26",
-   "end": "2026-12-02",
-   "brochure": "",
-   "link": "https://mmc.ugc.ac.in/",
-   "apply_note": "Apply on the UGC MMTTP portal",
-   "source": "UGC MMTTP portal",
-   "running": true,
-   "theme": "Teaching, curriculum and NEP"
-  },
-  {
    "title": "Frontiers in Physical Science",
    "organiser": "Hansraj College, New Delhi",
    "type": "Short Term Programme / FDP",
@@ -946,7 +918,7 @@
    "link": "https://mmc.ugc.ac.in/",
    "apply_note": "Apply on the UGC MMTTP portal",
    "source": "UGC MMTTP portal",
-   "running": false,
+   "running": true,
    "theme": "Sciences and engineering"
   },
   {
@@ -960,7 +932,7 @@
    "link": "https://mmc.ugc.ac.in/",
    "apply_note": "Apply on the UGC MMTTP portal",
    "source": "UGC MMTTP portal",
-   "running": false,
+   "running": true,
    "theme": "New teacher induction"
   },
   {
@@ -974,7 +946,7 @@
    "link": "https://mmc.ugc.ac.in/",
    "apply_note": "Apply on the UGC MMTTP portal",
    "source": "UGC MMTTP portal",
-   "running": false,
+   "running": true,
    "theme": "Social sciences, commerce and law"
   },
   {
@@ -988,7 +960,7 @@
    "link": "https://mmc.ugc.ac.in/",
    "apply_note": "Apply on the UGC MMTTP portal",
    "source": "UGC MMTTP portal",
-   "running": false,
+   "running": true,
    "theme": "Wellbeing, health and yoga"
   },
   {
@@ -1720,6 +1692,20 @@
    "theme": "Research methods and writing"
   },
   {
+   "title": "Information & Communication Technology and Communication Skills (Non Teaching Staff)",
+   "organiser": "University of Lucknow",
+   "type": "Short Term Programme / FDP",
+   "mode": "Physical",
+   "start": "2026-12-04",
+   "end": "2026-12-10",
+   "brochure": "",
+   "link": "https://mmc.ugc.ac.in/",
+   "apply_note": "Apply on the UGC MMTTP portal",
+   "source": "UGC MMTTP portal",
+   "running": false,
+   "theme": "Teaching, curriculum and NEP"
+  },
+  {
    "title": "Refresher Course Gender Studies",
    "organiser": "Utkal University, Bhubaneswar",
    "type": "Refresher Course",
@@ -2322,20 +2308,6 @@
    "theme": "Teaching, curriculum and NEP"
   },
   {
-   "title": "Refreshr Course in Innovation & Enterpreneurship Development",
-   "organiser": "Savitribai Phule Pune University, Pune",
-   "type": "Refresher Course",
-   "mode": "Online",
-   "start": "2026-12-09",
-   "end": "2026-12-22",
-   "brochure": "",
-   "link": "https://mmc.ugc.ac.in/",
-   "apply_note": "Apply on the UGC MMTTP portal",
-   "source": "UGC MMTTP portal",
-   "running": false,
-   "theme": "Social sciences, commerce and law"
-  },
-  {
    "title": "Refresher Course in Arts. Language and Literature (Interdiscplinary)",
    "organiser": "University of Kashmir",
    "type": "Refresher Course",
@@ -2440,7 +2412,7 @@
    "mode": "Physical",
    "start": "2026-12-14",
    "end": "2026-12-19",
-   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261120103051.pdf",
+   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261127131546.pdf",
    "link": "https://mmc.ugc.ac.in/",
    "apply_note": "Apply on the UGC MMTTP portal",
    "source": "UGC MMTTP portal",
@@ -2544,6 +2516,20 @@
    "source": "UGC MMTTP portal",
    "running": false,
    "theme": "Languages, literature and arts"
+  },
+  {
+   "title": "Reimagining Higher Education through Indian Knowledge Systems: Curriculum Integration and Pedagogical Transformation",
+   "organiser": "National Institute of Educational Planning and Administration, New Delhi",
+   "type": "Short Term Programme / FDP",
+   "mode": "Online",
+   "start": "2026-12-14",
+   "end": "2026-12-19",
+   "brochure": "",
+   "link": "https://mmc.ugc.ac.in/",
+   "apply_note": "Apply on the UGC MMTTP portal",
+   "source": "UGC MMTTP portal",
+   "running": false,
+   "theme": "Indian Knowledge Systems"
   },
   {
    "title": "Faculty Induction Program (Guru Dakshta)",
@@ -3070,7 +3056,7 @@
    "mode": "Online",
    "start": "2027-01-02",
    "end": "2027-01-16",
-   "brochure": "",
+   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261126164722.pdf",
    "link": "https://mmc.ugc.ac.in/",
    "apply_note": "Apply on the UGC MMTTP portal",
    "source": "UGC MMTTP portal",
@@ -3300,6 +3286,20 @@
    "source": "UGC MMTTP portal",
    "running": false,
    "theme": "AI, data and digital"
+  },
+  {
+   "title": "Refreshr Course in Innovation & Enterpreneurship Development",
+   "organiser": "Savitribai Phule Pune University, Pune",
+   "type": "Refresher Course",
+   "mode": "Online",
+   "start": "2027-01-04",
+   "end": "2027-01-17",
+   "brochure": "",
+   "link": "https://mmc.ugc.ac.in/",
+   "apply_note": "Apply on the UGC MMTTP portal",
+   "source": "UGC MMTTP portal",
+   "running": false,
+   "theme": "Social sciences, commerce and law"
   },
   {
    "title": "FDP/STP E learning: Beyond Chalk & Talk: Mastering the Digital Pedagogy",
@@ -3630,7 +3630,7 @@
    "mode": "Online",
    "start": "2027-01-07",
    "end": "2027-01-21",
-   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261105133115.pdf",
+   "brochure": "",
    "link": "https://mmc.ugc.ac.in/",
    "apply_note": "Apply on the UGC MMTTP portal",
    "source": "UGC MMTTP portal",
@@ -3678,6 +3678,20 @@
    "source": "UGC MMTTP portal",
    "running": false,
    "theme": "AI, data and digital"
+  },
+  {
+   "title": "Culture. Literature and Environment",
+   "organiser": "Maharshi Dayanand Saraswati University",
+   "type": "Refresher Course",
+   "mode": "Online",
+   "start": "2027-01-08",
+   "end": "2027-01-19",
+   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261127114041.pdf",
+   "link": "https://mmc.ugc.ac.in/",
+   "apply_note": "Apply on the UGC MMTTP portal",
+   "source": "UGC MMTTP portal",
+   "running": false,
+   "theme": "Environment and sustainability"
   },
   {
    "title": "Guru Dakshta (Faculty Induction Programme) (on-line)",
@@ -3958,6 +3972,20 @@
    "source": "UGC MMTTP portal",
    "running": false,
    "theme": "Indian Knowledge Systems"
+  },
+  {
+   "title": "Transforming Higher Education Through Multidisciplinary Knowledge and Innovative Practices",
+   "organiser": "Indian Institute of Teacher Education (IITE), Gandhinagar",
+   "type": "Refresher Course",
+   "mode": "Online",
+   "start": "2027-01-18",
+   "end": "2027-01-31",
+   "brochure": "",
+   "link": "https://mmc.ugc.ac.in/",
+   "apply_note": "Apply on the UGC MMTTP portal",
+   "source": "UGC MMTTP portal",
+   "running": false,
+   "theme": "Teaching, curriculum and NEP"
   },
   {
    "title": "समकालीन हिंदी साहित्य एवं विमर्श",
@@ -4638,7 +4666,7 @@
    "mode": "Online",
    "start": "2027-02-02",
    "end": "2027-02-15",
-   "brochure": "",
+   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261126164522.pdf",
    "link": "https://mmc.ugc.ac.in/",
    "apply_note": "Apply on the UGC MMTTP portal",
    "source": "UGC MMTTP portal",
@@ -5764,6 +5792,20 @@
    "source": "NITTTR Chandigarh",
    "running": false,
    "theme": "AI, data and digital"
+  },
+  {
+   "title": "Faculty Induction Programme",
+   "organiser": "Mizoram University, Aizawl",
+   "type": "Faculty Induction Programme",
+   "mode": "Online",
+   "start": "2027-04-01",
+   "end": "2027-04-28",
+   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261127140944.pdf",
+   "link": "https://mmc.ugc.ac.in/",
+   "apply_note": "Apply on the UGC MMTTP portal",
+   "source": "UGC MMTTP portal",
+   "running": false,
+   "theme": "New teacher induction"
   }
  ]
 }
