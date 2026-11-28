@@ -1,9 +1,9 @@
 {
- "updated": "2026-11-27",
+ "updated": "2026-11-28",
  "sources": {
   "UGC MMTTP portal": {
    "ok": true,
-   "count": 4293
+   "count": 4296
   },
   "NITTTR Chandigarh": {
    "ok": true,
@@ -11,20 +11,6 @@
   }
  },
  "programmes": [
-  {
-   "title": "SHORT TERM PROGRAMME ON A.I & DATA ANALYSIS (INTERDISCPLINARY)",
-   "organiser": "University of Kashmir",
-   "type": "Short Term Programme / FDP",
-   "mode": "Online",
-   "start": "2026-10-19",
-   "end": "2026-11-27",
-   "brochure": "",
-   "link": "https://mmc.ugc.ac.in/",
-   "apply_note": "Apply on the UGC MMTTP portal",
-   "source": "UGC MMTTP portal",
-   "running": true,
-   "theme": "AI, data and digital"
-  },
   {
    "title": "Faculty Induction Programme on Generative AI Applications in Teaching, Research and Technology",
    "organiser": "Central University of Kerala",
@@ -600,34 +586,6 @@
    "theme": "Social sciences, commerce and law"
   },
   {
-   "title": "Research Methodology",
-   "organiser": "NITTTR Chandigarh",
-   "type": "Short Term Programme / FDP",
-   "mode": "Physical",
-   "start": "2026-11-23",
-   "end": "2026-11-27",
-   "brochure": "",
-   "link": "https://fdp.nitttrchd.ac.in/fdp2025/latestcourses.php",
-   "apply_note": "Apply on the NITTTR Chandigarh site",
-   "source": "NITTTR Chandigarh",
-   "running": true,
-   "theme": "Research methods and writing"
-  },
-  {
-   "title": "Certificate Programme on Video Production Techniques for Influencers Module II Visual Aesthetics and Shooting Techniques",
-   "organiser": "NITTTR Chandigarh",
-   "type": "Short Term Programme / FDP",
-   "mode": "Physical",
-   "start": "2026-11-23",
-   "end": "2026-11-27",
-   "brochure": "",
-   "link": "https://fdp.nitttrchd.ac.in/fdp2025/latestcourses.php",
-   "apply_note": "Apply on the NITTTR Chandigarh site",
-   "source": "NITTTR Chandigarh",
-   "running": true,
-   "theme": "AI, data and digital"
-  },
-  {
    "title": "Design Thinking for Higher Order Learning and Student Transformation..",
    "organiser": "National Institute of Technology, Warangal",
    "type": "Short Term Programme / FDP",
@@ -974,7 +932,7 @@
    "link": "https://mmc.ugc.ac.in/",
    "apply_note": "Apply on the UGC MMTTP portal",
    "source": "UGC MMTTP portal",
-   "running": false,
+   "running": true,
    "theme": "Teaching, curriculum and NEP"
   },
   {
@@ -1082,7 +1040,7 @@
    "mode": "Online",
    "start": "2026-11-30",
    "end": "2026-12-05",
-   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261123152224.pdf",
+   "brochure": "",
    "link": "https://mmc.ugc.ac.in/",
    "apply_note": "Apply on the UGC MMTTP portal",
    "source": "UGC MMTTP portal",
@@ -1096,7 +1054,7 @@
    "mode": "Online",
    "start": "2026-11-30",
    "end": "2026-12-05",
-   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261112102611.pdf",
+   "brochure": "",
    "link": "https://mmc.ugc.ac.in/",
    "apply_note": "Apply on the UGC MMTTP portal",
    "source": "UGC MMTTP portal",
@@ -1384,20 +1342,6 @@
    "theme": "Social sciences, commerce and law"
   },
   {
-   "title": "Multidisciplinary Dimensions of Sanskrit: Knowledge, Research and Contemporary Applications",
-   "organiser": "National Sanskrit University , Tirupati",
-   "type": "Refresher Course",
-   "mode": "Online",
-   "start": "2026-12-01",
-   "end": "2026-12-16",
-   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261110102221.pdf",
-   "link": "https://mmc.ugc.ac.in/",
-   "apply_note": "Apply on the UGC MMTTP portal",
-   "source": "UGC MMTTP portal",
-   "running": false,
-   "theme": "Indian Knowledge Systems"
-  },
-  {
    "title": "Refresher Course in Social Sciences & Humanities",
    "organiser": "Savitribai Phule Pune University, Pune",
    "type": "Refresher Course",
@@ -1634,20 +1578,6 @@
    "source": "UGC MMTTP portal",
    "running": false,
    "theme": "AI, data and digital"
-  },
-  {
-   "title": "Online Refresher Course in Environment Studies (IDC) (03.12.2026 to 16.12.2026)",
-   "organiser": "Sambalpur University, Burla, Sambalpur",
-   "type": "Refresher Course",
-   "mode": "Online",
-   "start": "2026-12-03",
-   "end": "2026-12-16",
-   "brochure": "",
-   "link": "https://mmc.ugc.ac.in/",
-   "apply_note": "Apply on the UGC MMTTP portal",
-   "source": "UGC MMTTP portal",
-   "running": false,
-   "theme": "Environment and sustainability"
   },
   {
    "title": "STC on NEP 2020",
@@ -2188,7 +2118,7 @@
    "mode": "Hybrid",
    "start": "2026-12-08",
    "end": "2026-12-20",
-   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261125145629.pdf",
+   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261127163032.pdf",
    "link": "https://mmc.ugc.ac.in/",
    "apply_note": "Apply on the UGC MMTTP portal",
    "source": "UGC MMTTP portal",
@@ -2314,7 +2244,7 @@
    "mode": "Physical",
    "start": "2026-12-09",
    "end": "2026-12-23",
-   "brochure": "",
+   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261128112603.pdf",
    "link": "https://mmc.ugc.ac.in/",
    "apply_note": "Apply on the UGC MMTTP portal",
    "source": "UGC MMTTP portal",
@@ -2362,6 +2292,20 @@
    "source": "UGC MMTTP portal",
    "running": false,
    "theme": "Multidisciplinary and general"
+  },
+  {
+   "title": "Online Refresher Course in Environment Studies (IDC) (10.12.2026 to 23.12.2026)",
+   "organiser": "Sambalpur University, Burla, Sambalpur",
+   "type": "Refresher Course",
+   "mode": "Online",
+   "start": "2026-12-10",
+   "end": "2026-12-23",
+   "brochure": "",
+   "link": "https://mmc.ugc.ac.in/",
+   "apply_note": "Apply on the UGC MMTTP portal",
+   "source": "UGC MMTTP portal",
+   "running": false,
+   "theme": "Environment and sustainability"
   },
   {
    "title": "Advances in Materials Processing and Characterization",
@@ -2656,6 +2600,20 @@
    "source": "UGC MMTTP portal",
    "running": false,
    "theme": "Environment and sustainability"
+  },
+  {
+   "title": "Multidisciplinary Dimensions of Sanskrit: Knowledge, Research and Contemporary Applications",
+   "organiser": "National Sanskrit University , Tirupati",
+   "type": "Refresher Course",
+   "mode": "Online",
+   "start": "2026-12-15",
+   "end": "2026-12-31",
+   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261127161141.pdf",
+   "link": "https://mmc.ugc.ac.in/",
+   "apply_note": "Apply on the UGC MMTTP portal",
+   "source": "UGC MMTTP portal",
+   "running": false,
+   "theme": "Indian Knowledge Systems"
   },
   {
    "title": "Gurudakshata-02-2026-27",
@@ -2994,20 +2952,6 @@
    "theme": "Teaching, curriculum and NEP"
   },
   {
-   "title": "Refresher Course in Tribal identity, existence and development in Bharat (Multidisciplinary)",
-   "organiser": "University of Mumbai",
-   "type": "Refresher Course",
-   "mode": "Online",
-   "start": "2026-12-28",
-   "end": "2027-01-09",
-   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261017121646.pdf",
-   "link": "https://mmc.ugc.ac.in/",
-   "apply_note": "Apply on the UGC MMTTP portal",
-   "source": "UGC MMTTP portal",
-   "running": false,
-   "theme": "Social sciences, commerce and law"
-  },
-  {
    "title": "134 Faculty Induction Programme (All disciplines)",
    "organiser": "Panjab University",
    "type": "Faculty Induction Programme",
@@ -3154,7 +3098,7 @@
    "mode": "Online",
    "start": "2027-01-04",
    "end": "2027-01-09",
-   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261107100311.pdf",
+   "brochure": "",
    "link": "https://mmc.ugc.ac.in/",
    "apply_note": "Apply on the UGC MMTTP portal",
    "source": "UGC MMTTP portal",
@@ -3174,6 +3118,20 @@
    "source": "UGC MMTTP portal",
    "running": false,
    "theme": "Sciences and engineering"
+  },
+  {
+   "title": "STP for Non-Teaching",
+   "organiser": "Jamia Millia Islamia",
+   "type": "Short Term Programme / FDP",
+   "mode": "Physical",
+   "start": "2027-01-04",
+   "end": "2027-01-09",
+   "brochure": "",
+   "link": "https://mmc.ugc.ac.in/",
+   "apply_note": "Apply on the UGC MMTTP portal",
+   "source": "UGC MMTTP portal",
+   "running": false,
+   "theme": "Teaching, curriculum and NEP"
   },
   {
    "title": "Short Term Course on Artificial Intelligence for Teaching and Research",
@@ -3602,7 +3560,7 @@
    "mode": "Physical",
    "start": "2027-01-06",
    "end": "2027-01-13",
-   "brochure": "",
+   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261127153137.pdf",
    "link": "https://mmc.ugc.ac.in/",
    "apply_note": "Apply on the UGC MMTTP portal",
    "source": "UGC MMTTP portal",
@@ -3650,6 +3608,20 @@
    "source": "UGC MMTTP portal",
    "running": false,
    "theme": "New teacher induction"
+  },
+  {
+   "title": "Refresher Course in Tribal identity, existence and development in Bharat (Multidisciplinary)",
+   "organiser": "University of Mumbai",
+   "type": "Refresher Course",
+   "mode": "Physical",
+   "start": "2027-01-07",
+   "end": "2027-01-20",
+   "brochure": "",
+   "link": "https://mmc.ugc.ac.in/",
+   "apply_note": "Apply on the UGC MMTTP portal",
+   "source": "UGC MMTTP portal",
+   "running": false,
+   "theme": "Social sciences, commerce and law"
   },
   {
    "title": "International Relational & Cultural Diplomacy (offline)",
@@ -3944,6 +3916,20 @@
    "source": "UGC MMTTP portal",
    "running": false,
    "theme": "Teaching, curriculum and NEP"
+  },
+  {
+   "title": "RC on Mental Health and Wellbeing (MD)",
+   "organiser": "Jamia Millia Islamia",
+   "type": "Refresher Course",
+   "mode": "Online",
+   "start": "2027-01-16",
+   "end": "2027-01-30",
+   "brochure": "",
+   "link": "https://mmc.ugc.ac.in/",
+   "apply_note": "Apply on the UGC MMTTP portal",
+   "source": "UGC MMTTP portal",
+   "running": false,
+   "theme": "Wellbeing, health and yoga"
   },
   {
    "title": "Commerce and Management",
@@ -5052,6 +5038,20 @@
    "theme": "AI, data and digital"
   },
   {
+   "title": "Indian Knowledge System and Hindu Studies: Global and Contemporary Perspectives",
+   "organiser": "Hemvati Nandan Bahuguna University",
+   "type": "Short Term Programme / FDP",
+   "mode": "Physical",
+   "start": "2027-02-12",
+   "end": "2027-02-18",
+   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261127162149.pdf",
+   "link": "https://mmc.ugc.ac.in/",
+   "apply_note": "Apply on the UGC MMTTP portal",
+   "source": "UGC MMTTP portal",
+   "running": false,
+   "theme": "Indian Knowledge Systems"
+  },
+  {
    "title": "One day Principal Workshop",
    "organiser": "Calcutta University",
    "type": "Short Term Programme / FDP",
@@ -5128,7 +5128,7 @@
    "mode": "Online",
    "start": "2027-02-15",
    "end": "2027-02-20",
-   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261107100224.pdf",
+   "brochure": "",
    "link": "https://mmc.ugc.ac.in/",
    "apply_note": "Apply on the UGC MMTTP portal",
    "source": "UGC MMTTP portal",
@@ -5366,7 +5366,7 @@
    "mode": "Online",
    "start": "2027-02-22",
    "end": "2027-03-08",
-   "brochure": "https://mmc.ugc.ac.in/Uploads/Course/Materials_20261107100246.pdf",
+   "brochure": "",
    "link": "https://mmc.ugc.ac.in/",
    "apply_note": "Apply on the UGC MMTTP portal",
    "source": "UGC MMTTP portal",
